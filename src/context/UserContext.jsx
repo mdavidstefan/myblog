@@ -58,8 +58,18 @@ export const UserProvider = ({ children }) => {
         }
     }
 
+    const updateUser = async (displayName) => {
+        try {
+            await updateProfile(auth.currentUser, { displayName })
+            setMsg({})
+            setMsg({ signup: 'Sikeres módosítás' })
+        } catch (error) {
+            setMsg({ err: error.message })
+        }
+    }
+
     return (
-        <UserContext.Provider value={{ user, signInUser, signOutUser, msg, setMsg, signUpUser, resetPassword }}>
+        <UserContext.Provider value={{ user, signInUser, signOutUser, msg, setMsg, signUpUser, resetPassword, updateUser }}>
             {children}
         </UserContext.Provider>
     )
