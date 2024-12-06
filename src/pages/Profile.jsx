@@ -1,16 +1,25 @@
 import React from 'react'
-import { middleStyle } from '../utils'
+import { extractUrlAndId, middleStyle } from '../utility/utils'
 import { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
 import { NotFound } from './NotFound'
 import { useForm } from 'react-hook-form';
 import { useState } from 'react'
+import { uploadFile } from '../utility/uploadFile'
+import { MoonLoader } from 'react-spinners'
+import { Toastify } from '../components/Toastify'
+import { useEffect } from 'react'
 
 export const Profile = () => {
-    const { user, updateUser } = useContext(UserContext)
-    const [photo, setPhoto] = useState(null)
+    const { user, updateUser, msg } = useContext(UserContext)
+    const [loading, setLoading] = useState(false)
+    const [avatar, setAvatar] = useState(null)
 
-    const { register, handleSubmit, formState: { errors }, } = useForm({
+    useEffect(() => {
+        user?.photoURL && setAvatar(extractUrlAndId(user.photoURL).url)
+    }, [user])
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
             displayName: user?.displayName || '',
         }
@@ -18,7 +27,16 @@ export const Profile = () => {
     if (!user) return <NotFound />
 
     const onSubmit = async (data) => {
-        console.log(data, 'onsubmit');
+        setLoading(true)
+        try {
+            const file = data?.file ? data?.file[0] : null
+            const { url, id } = file ? await uploadFile(file) : null
+            updateUser(data.displayName, url + '/' + id)
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false)
+        }
     }
 
 
@@ -28,10 +46,11 @@ export const Profile = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                     <div>
+                        <label >Display name: </label>
                         <input {...register('displayName')} placeholder='felhasználónév' type='text' />
                     </div>
                     <div>
-                        <label> Avatar </label>
+                        <label> Avatar: </label>
                         <input {...register('file', {
                             validate: (value) => {
                                 if (!value[0]) return true
@@ -44,12 +63,15 @@ export const Profile = () => {
 
                             }
                         })} type="file"
-                            onChange={(e) => setPhoto(URL.createObjectURL(e.target.files[0]))}
+                            onChange={(e) => setAvatar(URL.createObjectURL(e.target.files[0]))}
                         />
                     </div>
+                    <p className='text-danger'>{errors?.file?.message}</p>
                     <input type="submit" />
+                    {loading && <MoonLoader />}
                 </form>
-                {photo && <img src={photo} />}
+                {msg && <Toastify {...msg} />}
+                {avatar && <img src={avatar} style={{ aspectRatio: '1/1', width: '150px' }} />}
             </div>
         </div>
     )

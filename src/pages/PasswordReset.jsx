@@ -3,7 +3,7 @@ import { Button, FormGroup, Input, Label, Form } from 'reactstrap'
 import { Toastify } from '../components/Toastify'
 import { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
-import { middleStyle } from '../utils'
+import { middleStyle } from '../utility/utils'
 
 export const PasswordReset = () => {
     const { msg, resetPassword } = useContext(UserContext)

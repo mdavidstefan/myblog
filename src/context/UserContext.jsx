@@ -12,8 +12,6 @@ export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [msg, setMsg] = useState(null)
 
-    console.log(msg);
-
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
@@ -58,9 +56,11 @@ export const UserProvider = ({ children }) => {
         }
     }
 
-    const updateUser = async (displayName) => {
+    const updateUser = async (displayName, photoURL) => {
         try {
-            await updateProfile(auth.currentUser, { displayName })
+            if (displayName && photoURL) await updateProfile(auth.currentUser, { displayName, photoURL })
+            else if (displayName) await updateProfile(auth.currentUser, { displayName })
+            else if (photoURL) await updateProfile(auth.currentUser, { photoURL })
             setMsg({})
             setMsg({ signup: 'Sikeres módosítás' })
         } catch (error) {

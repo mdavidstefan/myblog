@@ -5,7 +5,7 @@ import { Button, FormGroup, Input, Label } from 'reactstrap'
 import { UserContext } from '../context/UserContext'
 import { Toastify } from '../components/Toastify'
 import { useEffect } from 'react'
-import { middleStyle } from '../utils'
+import { middleStyle } from '../utility/utils'
 
 export const Auth = () => {
     const { user, signInUser, msg, setMsg, signUpUser } = useContext(UserContext)

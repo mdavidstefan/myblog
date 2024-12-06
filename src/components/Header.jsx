@@ -15,16 +15,25 @@ import {
 import { SiBloglovin } from "react-icons/si";
 import { RxAvatar } from "react-icons/rx";
 import { UserContext } from '../context/UserContext';
+import { useEffect } from 'react';
+import { extractUrlAndId } from '../utility/utils';
 
 export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { user, signOutUser } = useContext(UserContext)
+    console.log(user);
+
+    const [avatar, setAvatar] = useState(null)
+
+    useEffect(() => {
+        user?.photoURL && setAvatar(extractUrlAndId(user.photoURL).url)
+    }, [user])
 
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <div className='header'>
-            <Navbar dark fixed="top" expand="md" style={{ borderBottom: '1px solid gray' }}>
+        <div>
+            <Navbar dark fixed="top" expand="md" style={{ borderBottom: '1px solid gray', backgroundColor: '#274046' }}>
                 <NavbarBrand href="/"><SiBloglovin /></NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
@@ -72,7 +81,7 @@ export const Header = () => {
 
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
-                                        <RxAvatar />
+                                        {avatar ? <img className='myavatar' src={avatar} /> : <RxAvatar title={user.displayName} />}
                                     </DropdownToggle>
                                     <DropdownMenu end>
                                         <DropdownItem>
