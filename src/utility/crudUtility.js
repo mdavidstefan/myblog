@@ -1,4 +1,4 @@
-import { collection, onSnapshot, orderBy, query, serverTimestamp, where, doc, getDoc, addDoc } from "firebase/firestore"
+import { collection, onSnapshot, orderBy, query, serverTimestamp, where, doc, getDoc, addDoc, deleteDoc } from "firebase/firestore"
 import { db } from "./firebaseApp"
 
 
@@ -30,5 +30,9 @@ export const readSinglePost = async (id, setPost) => {
     const docRef = doc(db, "posts", id)
     const docSnap = await getDoc(docRef)
     setPost({ ...docSnap.data(), id: docSnap.id })
+}
 
+export const deletePost = async (id)=> {
+    const docRef = doc(db, 'posts', id)
+    await deleteDoc(docRef)
 }
