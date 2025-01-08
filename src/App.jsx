@@ -10,6 +10,8 @@ import { Admin } from './pages/Admin'
 import { Header } from './components/Header'
 import { NotFound } from './pages/NotFound'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { DeleteAccount } from './pages/DeleteAccount'
+import { ReadPost } from './pages/ReadPost'
 
 const router = createBrowserRouter([
   {
@@ -24,7 +26,9 @@ const router = createBrowserRouter([
       { path: '/pwreset', element: <PasswordReset /> },
       { path: '/profile', element: <Profile /> },
       { path: '/admin', element: <Admin /> },
-      { path: '*', element: <NotFound /> }
+      { path: '*', element: <NotFound /> },
+      { path: "/deleteAccount", element: <DeleteAccount /> },
+      { path: "/readPost/:id", element: <ReadPost /> }
     ]
   }
 ],

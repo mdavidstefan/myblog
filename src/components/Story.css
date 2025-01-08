@@ -1,0 +1,15 @@
+:root
+{
+    --color1: brown;
+    --color2: whitesmoke;
+    --bgColor: white;
+}
+
+.rse-ce
+{
+    background-color: var(--bgColor);
+    color: var(--color1);
+    min-height: 400px;
+    max-width: 600px;
+    max-height: 600px;
+}

@@ -12,19 +12,7 @@ export const Homepage = () => {
 
     return (
         <div className='homepage'>
-            <div className="categories">
-
-                {categories && categories.map(obj =>
-                    <Card key={obj.id} style={{ width: '18rem' }}>
-                        <img alt={obj.name} src={obj.photoUrl} style={{ width: '18rem', aspectRatio: '9/16', objectFit: 'cover' }} />
-                        <CardBody style={{ backgroundColor: '#e6dada' }}>
-                            <CardTitle tag="h5" style={{ textAlign: 'center' }}>
-                                {obj.name}
-                            </CardTitle>
-                        </CardBody>
-                    </Card>
-                )}
-            </div>
+            
             <div className="text">
                 <TypeAnimation
                     sequence={[
@@ -44,6 +32,21 @@ export const Homepage = () => {
                     repeat={Infinity}
                 />
             </div>
+            */
+            <div className="categories">
+
+                {categories && categories.map(obj =>
+                    <Card key={obj.id} style={{ width: '18rem' }}>
+                        <img alt={obj.name} src={obj.photoUrl} style={{ width: '18rem', aspectRatio: '9/16', objectFit: 'cover' }} />
+                        <CardBody style={{ backgroundColor: '#e6dada' }}>
+                            <CardTitle tag="h5" style={{ textAlign: 'center' }}>
+                                {obj.name}
+                            </CardTitle>
+                        </CardBody>
+                    </Card>
+                )}
+            </div>
+            
         </div>
     )
 }

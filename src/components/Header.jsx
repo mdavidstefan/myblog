@@ -16,18 +16,17 @@ import { SiBloglovin } from "react-icons/si";
 import { RxAvatar } from "react-icons/rx";
 import { UserContext } from '../context/UserContext';
 import { useEffect } from 'react';
-import { extractUrlAndId } from '../utility/utils';
+import { extractUrlAndId} from '../utility/utils';
 
 export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { user, signOutUser } = useContext(UserContext)
-    console.log(user);
-
     const [avatar, setAvatar] = useState(null)
 
     useEffect(() => {
         user?.photoURL && setAvatar(extractUrlAndId(user.photoURL).url)
-    }, [user])
+        !user && setAvatar(null)
+    }, [user, user?.photoURL])
 
     const toggle = () => setIsOpen(!isOpen);
 
@@ -45,6 +44,12 @@ export const Header = () => {
                         <NavItem>
                             <NavLink className="nav-link" to="/posts">Posztok</NavLink>
                         </NavItem>
+
+                        {user &&
+                            <NavLink to="create" className="nav-link">
+                                New post
+                            </NavLink>
+                        }
 
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
