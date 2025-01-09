@@ -16,7 +16,7 @@ import { SiBloglovin } from "react-icons/si";
 import { RxAvatar } from "react-icons/rx";
 import { UserContext } from '../context/UserContext';
 import { useEffect } from 'react';
-import { extractUrlAndId} from '../utility/utils';
+import { extractUrlAndId } from '../utility/utils';
 
 export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -92,8 +92,11 @@ export const Header = () => {
                                         <DropdownItem>
                                             <NavLink className='nav-link' to='/profile'>Személyes adatok</NavLink>
                                         </DropdownItem>
-                                        <DropdownItem divider></DropdownItem>
-                                        <DropdownItem>Fiók törlése</DropdownItem>
+                                        <DropdownItem divider />
+                                        <NavLink className='navlink' to='/deleteAccount'>
+                                            <DropdownItem>Fiók törlése</DropdownItem>
+                                        </NavLink>
+
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
                             </>
