@@ -32,7 +32,7 @@ export const Homepage = () => {
                     repeat={Infinity}
                 />
             </div>
-            */
+            
             <div className="categories">
 
                 {categories && categories.map(obj =>
