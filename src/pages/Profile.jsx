@@ -1,14 +1,12 @@
 import React from 'react'
 import { extractUrlAndId, middleStyle } from '../utility/utils'
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../context/UserContext'
 import { NotFound } from './NotFound'
 import { useForm } from 'react-hook-form';
-import { useState } from 'react'
 import { uploadFile } from '../utility/uploadFile'
 import { MoonLoader } from 'react-spinners'
 import { Toastify } from '../components/Toastify'
-import { useEffect } from 'react'
 
 export const Profile = () => {
     const { user, updateUser, msg } = useContext(UserContext)
@@ -38,7 +36,6 @@ export const Profile = () => {
             setLoading(false)
         }
     }
-
 
     return (
         <div className='page'>

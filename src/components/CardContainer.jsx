@@ -1,9 +1,7 @@
 import React from 'react'
 import { SingleCard } from './SingleCard'
-import { middleStyle } from '../utility/utils'
 
 export const CardContainer = ({ posts, setPosts }) => {
-
 
 
     return (

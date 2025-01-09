@@ -9,11 +9,16 @@ import { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
 import { delPhoto } from '../utility/uploadFile'
 import { useConfirm } from 'material-ui-confirm'
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import EditIcon from '@mui/icons-material/Edit';
+import { Alerts } from '../components/Alerts'
+import { toggleLikes } from '../utility/crudUtility'
 
 
 export const ReadPost = () => {
 
     const { user } = useContext(UserContext)
+    const [txt, setTxt] = useState(null)
     const params = useParams()
     const navigate = useNavigate()
     const confirm = useConfirm()
@@ -41,6 +46,11 @@ export const ReadPost = () => {
         }
     }
 
+    const handleLike = () => {
+        if (!user) setTxt("Be kell jelentkezni")
+        else toggleLikes(user.uid, post.id)
+    }
+
 
     return (
         <div style={middleStyle}>
@@ -50,8 +60,16 @@ export const ReadPost = () => {
             </>}
             <button className="btn btn-danger" onClick={() => navigate("/posts")} >go back</button>
             {user && post && (user.uid == post.userId) &&
-                <button><DeleteIcon onClick={handleDelete}/></button>
+                <>
+                    <button><DeleteIcon onClick={handleDelete} /></button>
+                    <button><EditIcon /></button>
+                </>
+
             }
+            <button><ThumbUpIcon onClick={handleLike} /></button>
+            {post && <span>Likes nr: {post?.likes.length}</span>}
+            {txt && <Alerts txt={txt} err={false} />}
+
         </div>
     )
 }

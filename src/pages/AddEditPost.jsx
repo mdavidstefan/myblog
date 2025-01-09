@@ -40,7 +40,8 @@ export const AddEditPost = () => {
             story,
             author: user.displayName,
             userId: user.uid,
-            category: selcateg
+            category: selcateg,
+            likes:[]
         }
 
 
