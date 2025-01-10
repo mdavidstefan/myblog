@@ -70,27 +70,27 @@ export const AddEditPost = () => {
                 category: selcateg,
                 likes: []
             }
+            try {
+                const file = data?.file ? data?.file[0] : null
+                const { url, id } = file ? await uploadFile(file) : null
+                delete newPostData.file
+                newPostData = { ...newPostData, photo: { url, id } }
+                console.log("new post: ", newPostData);
+                addPost(newPostData)
+                setUploaded(true)
+                reset()
+                setAvatar(null)
+                setStory(null)
+
+            } catch (error) {
+                console.log(error);
+
+            } finally {
+                setLoading(false)
+            }
+
         }
 
-
-        try {
-            const file = data?.file ? data?.file[0] : null
-            const { url, id } = file ? await uploadFile(file) : null
-            delete newPostData.file
-            newPostData = { ...newPostData, photo: { url, id } }
-            console.log("new post: ", newPostData);
-            addPost(newPostData)
-            setUploaded(true)
-            reset()
-            setAvatar(null)
-            setStory(null)
-
-        } catch (error) {
-            console.log(error);
-
-        } finally {
-            setLoading(false)
-        }
     }
 
     return (
@@ -107,7 +107,7 @@ export const AddEditPost = () => {
                     <p className='text-danger' >{errors?.title && "Adj meg egy címet"}</p>
                     <DropDown categories={categories} setSelCateg={setSelCateg} selcateg={selcateg} />
                     <Story setStory={setStory} uploaded={uploaded} story={story} />
-                    
+
                     <input type="file" disabled={params.id} {...register("file", {
                         required: !params.id,
                         validate: (value) => {
@@ -127,7 +127,7 @@ export const AddEditPost = () => {
                 </form>
                 {msg && <Toastify {...msg} />}
                 {uploaded && <Alerts txt="Sikeres feltöltés" />}
-                {avatar && <img className='myavatar' src={avatar} />}
+                {avatar && <img className='postpicture' src={avatar} />}
             </div>
         </div>
     )

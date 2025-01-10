@@ -31,7 +31,7 @@ export const Header = () => {
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <div>
+        <div className='header'>
             <Navbar dark fixed="top" expand="md" style={{ borderBottom: '1px solid gray', backgroundColor: '#274046' }}>
                 <NavbarBrand href="/"><QrCodeSharpIcon /></NavbarBrand>
                 <NavbarToggler onClick={toggle} />
