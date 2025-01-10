@@ -1,10 +1,8 @@
-import React from 'react'
-import { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Form, useLocation, useNavigate } from 'react-router-dom'
 import { Button, FormGroup, Input, Label } from 'reactstrap'
 import { UserContext } from '../context/UserContext'
 import { Toastify } from '../components/Toastify'
-import { useEffect } from 'react'
 import { middleStyle } from '../utility/utils'
 
 export const Auth = () => {
@@ -12,9 +10,7 @@ export const Auth = () => {
     const navigate = useNavigate()
 
     const location = useLocation()
-    console.log(location.pathname);
     const isSignIn = location.pathname == '/auth/in' //ha egyenlő, true értéket fog kapni
-
 
     useEffect(() => {
         setMsg(null)
@@ -31,9 +27,6 @@ export const Auth = () => {
         }
 
     }
-
-    console.log(user);
-
 
     return (
         <div className='page'>

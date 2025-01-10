@@ -12,11 +12,11 @@ import {
     DropdownMenu,
     DropdownItem,
 } from 'reactstrap';
-import { SiBloglovin } from "react-icons/si";
-import { RxAvatar } from "react-icons/rx";
 import { UserContext } from '../context/UserContext';
 import { useEffect } from 'react';
 import { extractUrlAndId } from '../utility/utils';
+import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
+import QrCodeSharpIcon from '@mui/icons-material/QrCodeSharp';
 
 export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +33,7 @@ export const Header = () => {
     return (
         <div>
             <Navbar dark fixed="top" expand="md" style={{ borderBottom: '1px solid gray', backgroundColor: '#274046' }}>
-                <NavbarBrand href="/"><SiBloglovin /></NavbarBrand>
+                <NavbarBrand href="/"><QrCodeSharpIcon /></NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="me-auto" navbar>
@@ -47,21 +47,10 @@ export const Header = () => {
 
                         {user &&
                             <NavLink to="create" className="nav-link">
-                                New post
+                                Új poszt
                             </NavLink>
                         }
 
-                        <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle nav caret>
-                                Options
-                            </DropdownToggle>
-                            <DropdownMenu end>
-                                <DropdownItem>Option 1</DropdownItem>
-                                <DropdownItem>Option 2</DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>Reset</DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
                     </Nav>
                     {/*authorization menu*/}
 
@@ -86,16 +75,12 @@ export const Header = () => {
 
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
-                                        {avatar ? <img className='myavatar' src={avatar} /> : <RxAvatar title={user.displayName} />}
+                                        {avatar ? <img className='myavatar' src={avatar} /> : <AccountCircleSharpIcon title={user.displayName} />}
                                     </DropdownToggle>
                                     <DropdownMenu end>
                                         <DropdownItem>
                                             <NavLink className='nav-link' to='/profile'>Személyes adatok</NavLink>
                                         </DropdownItem>
-                                        <DropdownItem divider />
-                                        <NavLink className='navlink' to='/deleteAccount'>
-                                            <DropdownItem>Fiók törlése</DropdownItem>
-                                        </NavLink>
 
                                     </DropdownMenu>
                                 </UncontrolledDropdown>

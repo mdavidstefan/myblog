@@ -1,19 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
 import parse from "html-react-parser"
-import { middleStyle } from '../utility/utils'
-import { deletePost, readSinglePost } from '../utility/crudUtility'
-import DeleteIcon from '@mui/icons-material/Delete';
-import { useContext } from 'react'
+import { deletePost, readSinglePost, toggleLikes } from '../utility/crudUtility'
 import { UserContext } from '../context/UserContext'
 import { delPhoto } from '../utility/uploadFile'
 import { useConfirm } from 'material-ui-confirm'
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import EditIcon from '@mui/icons-material/Edit';
 import { Alerts } from '../components/Alerts'
-import { toggleLikes } from '../utility/crudUtility'
-
+import DeleteSweepSharpIcon from '@mui/icons-material/DeleteSweepSharp';
+import ThumbUpOffAltSharpIcon from '@mui/icons-material/ThumbUpOffAltSharp';
+import EditSharpIcon from '@mui/icons-material/EditSharp';
 
 export const ReadPost = () => {
 
@@ -53,24 +48,33 @@ export const ReadPost = () => {
 
 
     return (
-        <div style={middleStyle}>
-            {post && <>
-                <img src={post.photo["url"]} alt={post.title} />
-                <p>{parse(post.story)}</p>
-            </>}
-            <button className="btn btn-danger" onClick={() => navigate("/posts")} >go back</button>
-            {user && post && (user.uid == post.userId) &&
-                <>
-                    <button><DeleteIcon onClick={handleDelete} /></button>
-                    <button><EditIcon /></button>
-                </>
 
-            }
-            <button><ThumbUpIcon onClick={handleLike} /></button>
-            {post && <span>Likes nr: {post?.likes.length}</span>}
-            {txt && <Alerts txt={txt} err={false} />}
+        <div className='readpostpage'>
+
+            <div className="detailedpost">
+                <div className="detailedposttop">
+                    {post && <>
+                        <h2>{post.title}</h2>
+                        <img src={post.photo["url"]} alt={post.title} style={{ maxHeight: 350 }} />
+                        <p className='detailedposttext'>{parse(post.story)}</p>
+                    </>}
+                </div>
+                <div className='detailedpostbottom'>
+                    <button className="btn btn-danger" onClick={() => navigate("/posts")} >go back</button>
+                    {user && post && (user.uid == post.userId) &&
+                        <>
+                            <button><DeleteSweepSharpIcon onClick={handleDelete} /></button>
+                            <button onClick={() => navigate('/update/' + post.id)}><EditSharpIcon /></button>
+                        </>
+                    }
+                    <button><ThumbUpOffAltSharpIcon onClick={handleLike} /></button>
+                    {post && <span>Likes nr: {post?.likes.length}</span>}
+                    {txt && <Alerts txt={txt} err={false} />}
+                </div>
+            </div>
 
         </div>
+
     )
 }
 

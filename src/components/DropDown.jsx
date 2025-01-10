@@ -8,7 +8,7 @@ import {
 
 
 
-export const DropDown = ({ categories, setSelcateg, selcateg }) => {
+export const DropDown = ({ categories, setSelCateg, selcateg }) => {
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -16,13 +16,13 @@ export const DropDown = ({ categories, setSelcateg, selcateg }) => {
     const toggle = () => setDropdownOpen((prevState) => !prevState);
 
     return (
-        <div className="d-flex p-5">
+        <div className="d-flex p-2">
             <Dropdown isOpen={dropdownOpen} toggle={toggle} >
                 <DropdownToggle caret
 
-                >{selcateg? selcateg : "Categories"}</DropdownToggle>
+                >{selcateg ? selcateg : "Kategóriák"}</DropdownToggle>
                 <DropdownMenu >
-                    {categories && categories.map((obj) => <DropdownItem  key={obj.id} onClick={()=>setSelcateg(obj.name)} >{obj.name}</DropdownItem>)}
+                    {categories && categories.map((obj) => <DropdownItem key={obj.id} onClick={() => setSelCateg(obj.name)} >{obj.name}</DropdownItem>)}
 
 
                 </DropdownMenu>

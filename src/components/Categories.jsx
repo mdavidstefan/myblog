@@ -8,20 +8,20 @@ import { RadioButtonChecked } from '@mui/icons-material'
 import { middleStyle } from '../utility/utils'
 import { Singlecateg } from './Singlecateg'
 
-export const Categories = ({ selcateg, setSelcateg }) => {
+export const Categories = ({ selcateg, setSelCateg }) => {
 
     const { categories } = useContext(CategContext)
 
     const HandleChange = (event) => {
         const { value, checked } = event.target
-        setSelcateg((prev) => checked ? [...prev, value] : prev.filter((categ) => categ != value))
+        setSelCateg((prev) => checked ? [...prev, value] : prev.filter((categ) => categ != value))
         console.log(selcateg);
 
     }
 
     return (
-        <div style={{ marginTop: "120px", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-            {categories && categories.map((obj) => <Singlecateg selcateg={selcateg} setSelcateg={setSelcateg} name={obj.name} />)}
+        <div className='categoryselector'>
+            {categories && categories.map((obj) => <Singlecateg selcateg={selcateg} setSelCateg={setSelCateg} name={obj.name} />)}
         </div>
     )
 }

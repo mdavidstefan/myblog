@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { extractUrlAndId, middleStyle } from '../utility/utils'
-import { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../context/UserContext'
+import { useConfirm } from 'material-ui-confirm'
+import { useNavigate } from 'react-router-dom'
 import { NotFound } from './NotFound'
 import { useForm } from 'react-hook-form';
 import { uploadFile } from '../utility/uploadFile'
@@ -9,9 +10,11 @@ import { MoonLoader } from 'react-spinners'
 import { Toastify } from '../components/Toastify'
 
 export const Profile = () => {
-    const { user, updateUser, msg } = useContext(UserContext)
+    const { user, updateUser, msg, logOutUser, deleteAccount } = useContext(UserContext)
     const [loading, setLoading] = useState(false)
     const [avatar, setAvatar] = useState(null)
+    const navigate = useNavigate()
+    const confirm = useConfirm()
 
     useEffect(() => {
         user?.photoURL && setAvatar(extractUrlAndId(user.photoURL).url)
@@ -37,17 +40,41 @@ export const Profile = () => {
         }
     }
 
+    useEffect(() => {
+        !user && navigate("/")
+    }, [user])
+
+    const handleDel = async () => {
+        try {
+            await confirm({
+                description: "figyelmeztetés: a változásokat nem lehet visszacsinálni",
+                confirmationText: "megerősítés",
+                cancellationText: "vissza",
+                title: "Biztosan kívánod a fiókod törlését?"
+            })
+            await deleteAccount()
+            logOutUser()
+
+        } catch (error) {
+            console.log("cancel: ", error);
+
+        }
+    }
+
     return (
-        <div className='page'>
-            <div style={middleStyle}>
+        <div className='profilepage'>
+            <div className='profilesettings'>
+                <h2>
+                    Személyes adatok
+                </h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                     <div>
-                        <label >Display name: </label>
+                        <label >Felhasználónév: </label>
                         <input {...register('displayName')} placeholder='felhasználónév' type='text' />
                     </div>
                     <div>
-                        <label> Avatar: </label>
+                        <label> Profilkép: </label>
                         <input {...register('file', {
                             validate: (value) => {
                                 if (!value[0]) return true
@@ -68,7 +95,12 @@ export const Profile = () => {
                     {loading && <MoonLoader />}
                 </form>
                 {msg && <Toastify {...msg} />}
-                {avatar && <img src={avatar} style={{ aspectRatio: '1/1', width: '150px' }} />}
+                {avatar &&
+                    <div className='avatardiv'>
+                        <img src={avatar} className='avatar' />
+                    </div>
+                }
+                <button className="btn btn-danger" onClick={handleDel}>Fiók törlése</button>
             </div>
         </div>
     )

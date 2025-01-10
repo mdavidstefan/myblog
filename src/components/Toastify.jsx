@@ -7,7 +7,7 @@ import { UserContext } from '../context/UserContext';
 export const Toastify = ({ signin, err, signup, resetPassword, update }) => {
     const { setMsg } = useContext(UserContext)
     const navigate = useNavigate()
-    
+
 
     useEffect(() => {
         if (err) {

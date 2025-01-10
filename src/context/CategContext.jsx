@@ -1,17 +1,17 @@
-import React, {createContext, useState, useEffect} from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import { readCategories } from '../utility/crudUtility'
 
 export const CategContext = createContext()
 
-export const CategProvider=({children})=>{
+export const CategProvider = ({ children }) => {
     const [categories, setCategories] = useState(null)
 
-    useEffect(()=>{
+    useEffect(() => {
         readCategories(setCategories)
     }, [])
 
-    return(
-        <CategContext.Provider value={{categories}}>
+    return (
+        <CategContext.Provider value={{ categories }}>
             {children}
         </CategContext.Provider>
     )
