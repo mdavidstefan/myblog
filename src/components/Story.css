@@ -1,12 +1,10 @@
-:root
-{
+:root {
     --color1: brown;
     --color2: whitesmoke;
     --bgColor: white;
 }
 
-.rse-ce
-{
+.rse-ce {
     background-color: var(--bgColor);
     color: var(--color1);
     min-height: 400px;

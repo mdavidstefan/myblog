@@ -39,7 +39,7 @@ export const Homepage = () => {
                         <NavLink to={'/posts?ctg=' + obj.name}>
                             <img alt={obj.name} src={obj.photoUrl} style={{ width: '18rem', aspectRatio: '9/16', objectFit: 'cover' }} />
                             <CardBody style={{ backgroundColor: '#e6dada' }}>
-                                <CardTitle tag="h5" style={{ textAlign: 'center' }}>
+                                <CardTitle tag="h5" style={{ textAlign: 'center', color:'#274046' }}>
                                     {obj.name}
                                 </CardTitle>
                             </CardBody>

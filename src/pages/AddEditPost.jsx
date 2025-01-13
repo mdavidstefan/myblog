@@ -98,7 +98,7 @@ export const AddEditPost = () => {
             <div className='newpost'>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div>
-                        <label >Poszt címe:</label>
+                        <label >Poszt címe</label>
                     </div>
                     <div>
                         <input {...register("title", { required: true })} type='text' placeholder='Cím' />
@@ -106,24 +106,32 @@ export const AddEditPost = () => {
 
                     <p className='text-danger' >{errors?.title && "Adj meg egy címet"}</p>
                     <DropDown categories={categories} setSelCateg={setSelCateg} selcateg={selcateg} />
-                    <Story setStory={setStory} uploaded={uploaded} story={story} />
+                    <div className="story">
+                        <Story setStory={setStory} uploaded={uploaded} story={story} />
+                    </div>
 
-                    <input type="file" disabled={params.id} {...register("file", {
-                        required: !params.id,
-                        validate: (value) => {
-                            if (!value[0]) return true
-                            const acceptedFormats = ["png", "jpg"]
-                            const fileExtension = value[0].name.split(".").pop().toLowerCase()
-                            if (!acceptedFormats.includes(fileExtension)) return "invalid file format"
-                            if (!value[0].size > 1 * 1000 * 1024) return "maximum file size is 1MB"
-                            return true
-                        }
-                    })}
-                        onChange={(e) => setAvatar(URL.createObjectURL(e.target.files[0]))}
-                    />
+                    <div className="fileupload">
+                        <input type="file" disabled={params.id} {...register("file", {
+                            required: !params.id,
+                            validate: (value) => {
+                                if (!value[0]) return true
+                                const acceptedFormats = ["png", "jpg"]
+                                const fileExtension = value[0].name.split(".").pop().toLowerCase()
+                                if (!acceptedFormats.includes(fileExtension)) return "invalid file format"
+                                if (!value[0].size > 1 * 1000 * 1024) return "maximum file size is 1MB"
+                                return true
+                            }
+                        })}
+                            onChange={(e) => setAvatar(URL.createObjectURL(e.target.files[0]))}
+                        />
+                    </div>
                     <p className='text-danger'>{errors?.file?.message}</p>
-                    <input type='submit' disabled={!selcateg || !story} />
-                    {loading && <MoonLoader />}
+                    <div className="submit">
+                        <input type='submit' disabled={!selcateg || !story} />
+                    </div>
+                    <div className="loading">
+                        {loading && <MoonLoader />} 
+                    </div>
                 </form>
                 {msg && <Toastify {...msg} />}
                 {uploaded && <Alerts txt="Sikeres feltöltés" />}
