@@ -23,9 +23,9 @@ export const Posts = () => {
     return (
         <div className='responsivediv' id='postpage'>
 
-            <div>
-                <h1>Posztok</h1>
-            </div>
+
+            <h1>Posztok</h1>
+
 
             <Categories selcateg={selcateg} setSelCateg={setSelCateg} />
             {posts && <SearchBox items={posts.map(obj => ({ id: obj.id, name: obj.title }))} />}

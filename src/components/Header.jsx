@@ -31,65 +31,68 @@ export const Header = () => {
     const toggle = () => setIsOpen(!isOpen);
 
     return (
+
         <div>
-            <Navbar dark fixed="top" expand="md" style={{ borderBottom: '1px solid gray', backgroundColor: '#274046' }}>
-                <NavbarBrand href="/"><QrCodeSharpIcon /></NavbarBrand>
-                <NavbarToggler onClick={toggle} />
-                <Collapse isOpen={isOpen} navbar>
-                    <Nav className="me-auto" navbar>
-                        <NavItem>
-                            <NavLink className="nav-link" to='/'>Főoldal</NavLink>
-                        </NavItem>
+            <div>
+                <Navbar dark fixed="top" expand="md" style={{ borderBottom: '3px solid gray', backgroundColor: '#274046' }}>
+                    <NavbarBrand href="/"><QrCodeSharpIcon /></NavbarBrand>
+                    <NavbarToggler onClick={toggle} />
+                    <Collapse isOpen={isOpen} navbar>
+                        <Nav className="me-auto" navbar>
+                            <NavItem>
+                                <NavLink className="nav-link" to='/'>Főoldal</NavLink>
+                            </NavItem>
 
-                        <NavItem>
-                            <NavLink className="nav-link" to="/posts">Posztok</NavLink>
-                        </NavItem>
+                            <NavItem>
+                                <NavLink className="nav-link" to="/posts">Posztok</NavLink>
+                            </NavItem>
 
-                        {user &&
-                            <NavLink to="create" className="nav-link">
-                                Új poszt
-                            </NavLink>
-                        }
+                            {user &&
+                                <NavLink to="create" className="nav-link">
+                                    Új poszt
+                                </NavLink>
+                            }
 
-                    </Nav>
-                    {/*authorization menu*/}
+                        </Nav>
+                        {/*authorization menu*/}
 
-                    <Nav navbar>
-                        {!user ?
-                            <>
-                                <NavItem>
-                                    <NavLink className="nav-link" to="/auth/in">Belépés</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink className="nav-link" to="/auth/up">Regisztráció</NavLink>
-                                </NavItem>
-                            </>
-                            :
-                            <>
-                                <NavItem>
-                                    <NavLink className="nav-link" to="/"
-                                        onClick={() => signOutUser()}
-                                    >Kijelentkezés
-                                    </NavLink>
-                                </NavItem>
+                        <Nav navbar>
+                            {!user ?
+                                <>
+                                    <NavItem>
+                                        <NavLink className="nav-link" to="/auth/in">Belépés</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink className="nav-link" to="/auth/up">Regisztráció</NavLink>
+                                    </NavItem>
+                                </>
+                                :
+                                <>
+                                    <NavItem>
+                                        <NavLink className="nav-link" to="/"
+                                            onClick={() => signOutUser()}
+                                        >Kijelentkezés
+                                        </NavLink>
+                                    </NavItem>
 
-                                <UncontrolledDropdown nav inNavbar>
-                                    <DropdownToggle nav caret>
-                                        {avatar ? <img id='myavatar' src={avatar} /> : <AccountCircleSharpIcon title={user.displayName} />}
-                                    </DropdownToggle>
-                                    <DropdownMenu end>
-                                        <DropdownItem>
-                                            <NavLink className='nav-link' to='/profile'>Személyes adatok</NavLink>
-                                        </DropdownItem>
+                                    <UncontrolledDropdown nav inNavbar>
+                                        <DropdownToggle nav caret>
+                                            {avatar ? <img id='myavatar' src={avatar} /> : <AccountCircleSharpIcon title={user.displayName} />}
+                                        </DropdownToggle>
+                                        <DropdownMenu end>
+                                            <DropdownItem>
+                                                <NavLink className='nav-link' to='/profile' style={{color: 'black'}}>Személyes adatok</NavLink>
+                                            </DropdownItem>
 
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
-                            </>
-                        }
-                    </Nav>
-                </Collapse>
-            </Navbar>
-            <Outlet />
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                </>
+                            }
+                        </Nav>
+                    </Collapse>
+                </Navbar>
+                <Outlet />
+            </div>
         </div>
     );
 }

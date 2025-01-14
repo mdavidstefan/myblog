@@ -92,6 +92,9 @@ export const AddEditPost = () => {
 
     return (
         <div className='responsivediv' id='newpostpage'>
+
+            <h1 style={{ marginBottom: '30px' }}>Poszt szerkesztése</h1>
+
             <div className='responsivediv' id='newpost'>
                 {avatar && <img id='postpicture' src={avatar} />}
                 <form onSubmit={handleSubmit(onSubmit)}>

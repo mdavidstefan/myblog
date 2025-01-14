@@ -55,7 +55,7 @@ export const ReadPost = () => {
                     {post && <>
                         <h2>{post.title}</h2>
                         <img src={post.photo["url"]} alt={post.title} style={{ 
-                            maxHeight: 500, objectFit: 'cover'}} />
+                            maxWidth: '100%', height:'auto', objectFit: 'cover'}} />
                         <p className='detailedposttext'>{parse(post.story)}</p>
                     </>}
                 </div>

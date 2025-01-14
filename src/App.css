@@ -45,6 +45,7 @@
   background: #e6dada;
   background: -webkit-linear-gradient(to left, #274046, #e6dada);
   background: linear-gradient(to left, #274046, #e6dada);
+  flex-direction: column;
 }
 
 #newpost {
