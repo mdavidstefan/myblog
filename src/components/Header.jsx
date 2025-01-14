@@ -31,7 +31,7 @@ export const Header = () => {
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <div className='header'>
+        <div>
             <Navbar dark fixed="top" expand="md" style={{ borderBottom: '1px solid gray', backgroundColor: '#274046' }}>
                 <NavbarBrand href="/"><QrCodeSharpIcon /></NavbarBrand>
                 <NavbarToggler onClick={toggle} />
@@ -75,7 +75,7 @@ export const Header = () => {
 
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
-                                        {avatar ? <img className='myavatar' src={avatar} /> : <AccountCircleSharpIcon title={user.displayName} />}
+                                        {avatar ? <img id='myavatar' src={avatar} /> : <AccountCircleSharpIcon title={user.displayName} />}
                                     </DropdownToggle>
                                     <DropdownMenu end>
                                         <DropdownItem>

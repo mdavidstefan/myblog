@@ -1,5 +1,4 @@
-import React from 'react'
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
 import { sanitizeUrl } from '../utility/utils'
 import { styled } from '@mui/material/styles';
@@ -11,12 +10,12 @@ import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { DoNotDisturb } from '@mui/icons-material';
-import { ReadMore } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import KitchenSharpIcon from '@mui/icons-material/KitchenSharp';
 import PsychologyAltSharpIcon from '@mui/icons-material/PsychologyAltSharp';
 import LocalBarSharpIcon from '@mui/icons-material/LocalBarSharp';
 import TerminalSharpIcon from '@mui/icons-material/TerminalSharp';
+import { Button } from '@mui/material';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -70,13 +69,15 @@ export const SingleCard = ({ author, category, photo, story, timestamp, title, u
 
     return (
         <div>
-            <Card sx={{ maxWidth: 350, minWidth: 'auto' }}>
+            <Card sx={{ maxWidth: 300, backgroundColor: '#274046', color: '#ffffff' }}>
                 <CardHeader
                     avatar={
                         getcateg() || <DoNotDisturb />
                     }
                     title={title}
                     subheader={author}
+
+                    sx={{ textAlign: 'center' }}
                 />
                 <CardMedia sx={{
                     objectFit: 'cover',
@@ -88,16 +89,15 @@ export const SingleCard = ({ author, category, photo, story, timestamp, title, u
                     alt={title}
                 />
                 <CardContent>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    <Typography variant="body2">
                         {sanitizeUrl(story)}
                     </Typography>
                 </CardContent>
-                <CardActions disableSpacing>
-                    <IconButton aria-label="share">
-                        <ReadMore onClick={() => navigate("/readPost/" + id)} />
-                    </IconButton>
+                <CardActions disableSpacing >
+                    <Button variant='filled' onClick={() => navigate("/readPost/" + id)} fullWidth sx={{
+                        backgroundColor: '#e6dada', color: '#274046'
+                    }}>read more</Button>
                 </CardActions>
-
             </Card>
         </div>
     )

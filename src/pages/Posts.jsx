@@ -21,14 +21,16 @@ export const Posts = () => {
     }, [selcateg])
 
     return (
-        <div className='postpage'>
+        <div className='responsivediv' id='postpage'>
 
-            <h1>Posztok</h1>
+            <div>
+                <h1>Posztok</h1>
+            </div>
 
-                <Categories selcateg={selcateg} setSelCateg={setSelCateg} />
-                {posts && <SearchBox items={posts.map(obj=>({id:obj.id, name:obj.title}))}/>}
+            <Categories selcateg={selcateg} setSelCateg={setSelCateg} />
+            {posts && <SearchBox items={posts.map(obj => ({ id: obj.id, name: obj.title }))} />}
 
-            <div className="posts">
+            <div className="responsivediv" id='posts'>
                 {posts && posts.map((obj) => <SingleCard {...obj} key={obj.id} />)}
             </div>
 

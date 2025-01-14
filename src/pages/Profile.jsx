@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { uploadFile } from '../utility/uploadFile'
 import { MoonLoader } from 'react-spinners'
 import { Toastify } from '../components/Toastify'
+import { Button } from '@mui/material'
 
 export const Profile = () => {
     const { user, updateUser, msg, logOutUser, deleteAccount } = useContext(UserContext)
@@ -57,24 +58,27 @@ export const Profile = () => {
 
         } catch (error) {
             console.log("cancel: ", error);
-
         }
     }
 
     return (
-        <div className='profilepage'>
-            <div className='profilesettings'>
-                <h2>
+        <div className='responsivediv' id='profilepage'>
+            <div id='profilesettings'>
+                <h2 style={{ textAlign: 'center' }}>
                     Személyes adatok
                 </h2>
+                {avatar &&
+                    <div className='responsivediv'>
+                        <img src={avatar} className='avatar' />
+                    </div>
+                }
                 <form onSubmit={handleSubmit(onSubmit)}>
-
-                    <div>
-                        <label >Felhasználónév: </label>
+                    <div style={{ marginTop: '20px' }}>
+                        <label style={{marginRight: '5px'}}>Felhasználónév:</label>
                         <input {...register('displayName')} placeholder='felhasználónév' type='text' />
                     </div>
                     <div>
-                        <label> Profilkép: </label>
+                        <label style={{marginRight: '5px'}}> Profilkép:</label>
                         <input {...register('file', {
                             validate: (value) => {
                                 if (!value[0]) return true
@@ -91,16 +95,16 @@ export const Profile = () => {
                         />
                     </div>
                     <p className='text-danger'>{errors?.file?.message}</p>
-                    <input type="submit" />
+                    <input type="submit" value="Változások mentése" style={{ 
+                        width: '100%', borderRadius: '5px', marginBottom: '10px' }} />
                     {loading && <MoonLoader />}
                 </form>
                 {msg && <Toastify {...msg} />}
-                {avatar &&
-                    <div className='avatardiv'>
-                        <img src={avatar} className='avatar' />
-                    </div>
-                }
-                <button className="btn btn-danger" onClick={handleDel}>Fiók törlése</button>
+
+                <Button variant="contained" color="error" onClick={handleDel} fullWidth>
+                    Fiók törlése
+                </Button>
+
             </div>
         </div>
     )

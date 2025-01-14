@@ -25,21 +25,20 @@ export const Auth = () => {
         } else {
             signUpUser(data.get('email'), data.get('password'), data.get('displayName'))
         }
-
     }
 
     return (
         <div className='page'>
-            <div style={middleStyle}>
-                <h3>{isSignIn ? 'Sign in' : 'Sign up'}</h3>
+            <div style={middleStyle} className='responsivediv' id='authdiv'>
+                <h3>{isSignIn ? 'Bejelentkezés' : 'Regisztráció'}</h3>
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
-                        <Label > Email </Label>
+                        <Label >Email </Label>
                         <Input name="email" placeholder="email" type="email" />
                     </FormGroup>
                     <FormGroup>
-                        <Label > Password </Label>
-                        <Input name="password" type="password" />
+                        <Label > Jelszó </Label>
+                        <Input name="password" placeholder="jelszó" type="password" />
                     </FormGroup>
                     {!isSignIn &&
                         <FormGroup>
@@ -48,9 +47,14 @@ export const Auth = () => {
                         </FormGroup>
                     }
 
-                    <Button> Submit </Button>
+                    <div>
+                        <a href="#" onClick={() => navigate('/pwreset')} style={{color: '#ffffff'}}>Elfelejtett jelszó?</a>
+                    </div>
+                    <div className='responsivediv'>
+                        <Button style={{ width: '100%', marginTop: '10px', backgroundColor: '#274046', color: '#e6dada' }}> Submit </Button>
+                    </div>
                 </Form>
-                <a href="#" onClick={() => navigate('/pwreset')}>Forgotten password</a>
+
 
                 {msg && <Toastify {...msg} />}
             </div>

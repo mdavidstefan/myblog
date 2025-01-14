@@ -11,6 +11,7 @@ import { DropDown } from '../components/DropDown.jsx'
 import { CategContext } from '../context/CategContext.jsx'
 import { Alerts } from '../components/Alerts.jsx'
 import { useParams } from 'react-router-dom'
+import { TextField } from '@mui/material'
 
 export const AddEditPost = () => {
 
@@ -42,9 +43,7 @@ export const AddEditPost = () => {
         }
     }, [post])
 
-
     if (!user) { return <Homepage /> }
-
 
     const onSubmit = async (data) => {
         setLoading(true);
@@ -88,30 +87,32 @@ export const AddEditPost = () => {
             } finally {
                 setLoading(false)
             }
-
         }
-
     }
 
     return (
-        <div className='newpostpage'>
-            <div className='newpost'>
+        <div className='responsivediv' id='newpostpage'>
+            <div className='responsivediv' id='newpost'>
+                {avatar && <img id='postpicture' src={avatar} />}
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div>
-                        <label >Poszt címe</label>
+                    <div style={{ textAlign: 'center' }}>
+                        <label><h4>Poszt címe:</h4></label>
                     </div>
                     <div>
-                        <input {...register("title", { required: true })} type='text' placeholder='Cím' />
+                        <TextField fullWidth {...register("title", { required: true })} label="Cím" variant="standard" sx={{ input: { color: '#e6dada' } }} focused />
                     </div>
 
-                    <p className='text-danger' >{errors?.title && "Adj meg egy címet"}</p>
-                    <DropDown categories={categories} setSelCateg={setSelCateg} selcateg={selcateg} />
-                    <div className="story">
+                    <p className='text-danger' style={{ textAlign: 'center' }}>{errors?.title && "Adj meg egy címet"}</p>
+                    <div className="responsivediv">
+                        <DropDown categories={categories} setSelCateg={setSelCateg} selcateg={selcateg}
+                        />
+                    </div>
+                    <div id='storydiv'>
                         <Story setStory={setStory} uploaded={uploaded} story={story} />
                     </div>
 
-                    <div className="fileupload">
-                        <input type="file" disabled={params.id} {...register("file", {
+                    <div>
+                        <input id="filechoose" type="file" disabled={params.id} {...register("file", {
                             required: !params.id,
                             validate: (value) => {
                                 if (!value[0]) return true
@@ -126,16 +127,17 @@ export const AddEditPost = () => {
                         />
                     </div>
                     <p className='text-danger'>{errors?.file?.message}</p>
-                    <div className="submit">
-                        <input type='submit' disabled={!selcateg || !story} />
+                    <div>
+                        <input type="submit" disabled={!selcateg || !story} value="Mentés" style={{
+                            width: '100%', backgroundColor: "#274046", borderRadius: '5px', color: '#ffffff'
+                        }} />
                     </div>
                     <div className="loading">
-                        {loading && <MoonLoader />} 
+                        {loading && <MoonLoader />}
                     </div>
                 </form>
                 {msg && <Toastify {...msg} />}
                 {uploaded && <Alerts txt="Sikeres feltöltés" />}
-                {avatar && <img className='postpicture' src={avatar} />}
             </div>
         </div>
     )

@@ -5,145 +5,139 @@
   background: linear-gradient(to bottom, #274046, #e6dada);
 }
 
-.myavatar {
+#myavatar {
   width: 30px;
   height: 30px;
   border-radius: 50%;
 }
 
-.categories {
+.responsivediv {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 30px;
 }
 
-.homepage {
+#categories {
+  flex-direction: row;
+  gap: 50px;
+}
+
+#homepage {
   min-height: 100vh;
   background: #e6dada;
   background: -webkit-linear-gradient(to top, #274046, #e6dada);
   background: linear-gradient(to top, #274046, #e6dada);
-  display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  gap: 10px;
 }
 
-.postpage {
+#postpage {
   min-height: 100vh;
   background: #e6dada;
   background: -webkit-linear-gradient(to bottom, #274046, #e6dada);
   background: linear-gradient(to bottom, #274046, #e6dada);
-  display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
 }
 
-.newpostpage {
+#newpostpage {
   min-height: 100vh;
   background: #e6dada;
   background: -webkit-linear-gradient(to left, #274046, #e6dada);
   background: linear-gradient(to left, #274046, #e6dada);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
 }
 
-.profilepage {
+#newpost {
+  flex-direction: column;
+  border: 5px solid #ffffff;
+  border-radius: 15px;
+  padding: 20px;
+  gap: 15px;
+  background: -webkit-linear-gradient(to right, #274046, #e6dada);
+  background: linear-gradient(to right, #274046, #e6dada);
+}
+
+#storydiv {
+  max-width: 400px;
+  border: 1px solid #274046;
+  background-color: #e6dada;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+#profilepage {
   min-height: 100vh;
   background: #e6dada;
   background: -webkit-linear-gradient(to right, #274046, #e6dada);
   background: linear-gradient(to right, #274046, #e6dada);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
 }
 
-.posts {
-  display: flex;
+#posts {
   flex-direction: row;
   margin-top: 50px;
   margin-bottom: 20px;
   margin-right: 15px;
   margin-left: 15px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
   gap: 20px;
 }
 
-.myavatar {
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-}
-
-.categoryselector {
+#categoryselector {
   margin-top: 20px;
   margin-bottom: 20px;
-  display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
   gap: 10px;
 }
 
-.profilesettings {
-  background-color: #274046;
-  padding: 20px;
-  border-radius: 5%;
-  margin: 10px;
-  text-align: justify;
-}
-
-.avatar {
-  aspect-ratio: 1/1;
-  width: 200px;
-  border-radius: 50%;
-}
-
-.avatardiv {
-  display: flex;
-  justify-content: center;
-}
-
-.readpostpage {
-  min-height: 100vh;
-  background: #e6dada;
-  background: -webkit-linear-gradient(to top, #274046, #e6dada);
-  background: linear-gradient(to top, #274046, #e6dada);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.detailedpost {
+#profilesettings {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 20px;
-  background-color: #ffffff;
-  border-radius: 5px;
+  margin-left: 15px;
+  margin-right: 15px;
+  gap: 10px;
+  background: -webkit-linear-gradient(to left, #274046, #e6dada);
+  background: linear-gradient(to left, #274046, #e6dada);
+  padding: 20px;
+  border-radius: 10px;
   -webkit-box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.75);
 }
 
-.detailedpostbottom {
+.avatar {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  width: 200px;
+  border-radius: 50%;
+  border: 5px #ffffff solid;
+}
+
+#readpostpage {
+  min-height: 100vh;
+  background: #e6dada;
+  background: -webkit-linear-gradient(to top, #274046, #e6dada);
+  background: linear-gradient(to top, #274046, #e6dada);
+}
+
+#detailedpost {
+  flex-direction: column;
+  padding-bottom: 10px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  -webkit-box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.75);
+  border: 5px solid #274046;
+}
+
+#detailedpostbottom {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .detailedposttext {
@@ -152,29 +146,29 @@
   padding: 20px;
 }
 
-.detailedposttop {
-  padding: 5px;
+#detailedposttop {
+  padding-top: 15px;
   text-align: center;
 }
 
-.newpost {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  padding: 25px; 
-  gap: 15px;
-  max-width: 474px;
-}
-
-.postpicture {
-  width: 100px;
-  height: 100px;
+#postpicture {
+  aspect-ratio: 1/1;
+  width: 200px;
+  object-fit: cover;
   border-radius: 50%;
+  border: 5px #ffffff solid;
 }
 
-.submit {
-  display: flex;
-  justify-content: center;
+.btnshadow {
+  -webkit-box-shadow: 5px 5px 25px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 5px 25px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 5px 25px 0px rgba(0, 0, 0, 0.75);
+}
+
+#authdiv {
+  flex-direction: column;
+  border-radius: 25px;
+  padding: 30px;
+  background: -webkit-linear-gradient(to top, #274046, #e6dada);
+  background: linear-gradient(to top, #274046, #e6dada);
 }

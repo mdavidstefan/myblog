@@ -6,8 +6,6 @@ import {
     DropdownItem,
 } from 'reactstrap';
 
-
-
 export const DropDown = ({ categories, setSelCateg, selcateg }) => {
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -17,14 +15,12 @@ export const DropDown = ({ categories, setSelCateg, selcateg }) => {
 
     return (
         <div className="d-flex p-2">
-            <Dropdown isOpen={dropdownOpen} toggle={toggle} >
-                <DropdownToggle caret
+            <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+                <DropdownToggle caret style={{backgroundColor: '#274046'}}
 
                 >{selcateg ? selcateg : "Kategóriák"}</DropdownToggle>
                 <DropdownMenu >
                     {categories && categories.map((obj) => <DropdownItem key={obj.id} onClick={() => setSelCateg(obj.name)} >{obj.name}</DropdownItem>)}
-
-
                 </DropdownMenu>
             </Dropdown>
         </div>

@@ -9,37 +9,33 @@ export const Homepage = () => {
     console.log(categories);
 
     return (
-        <div className='homepage'>
+        <div className='responsivediv' id='homepage'>
 
-            <div className="text">
-                <TypeAnimation
-                    sequence={[
-                        'Welcome to my blog',
-                        1000,
-                        'Filozófia',
-                        1000,
-                        'Konyha',
-                        1000,
-                        'Szórakozás',
-                        1000,
-                        'Technológia',
-                        1000
-                    ]}
-                    speed={50}
-                    style={{ fontSize: '2em' }}
-                    repeat={Infinity}
-                    preRenderFirstString={true}
-                />
-            </div>
+            <TypeAnimation
+                sequence={[
+                    'Témák: Filozófia',
+                    1000,
+                    'Témák: Konyha',
+                    1000,
+                    'Témák: Szórakozás',
+                    1000,
+                    'Témák: Technológia',
+                    1000
+                ]}
+                wrapper='span'
+                speed={50}
+                style={{ fontSize: '3em', display: 'inline-block' }}
+                repeat={Infinity}
+            />
 
-            <div className="categories">
+            <div className="responsivediv" id='categories'>
 
                 {categories && categories.map(obj =>
                     <Card key={obj.id} style={{ width: '18rem' }}>
                         <NavLink to={'/posts?ctg=' + obj.name}>
                             <img alt={obj.name} src={obj.photoUrl} style={{ width: '18rem', aspectRatio: '9/16', objectFit: 'cover' }} />
                             <CardBody style={{ backgroundColor: '#e6dada' }}>
-                                <CardTitle tag="h5" style={{ textAlign: 'center', color:'#274046' }}>
+                                <CardTitle tag="h5" style={{ textAlign: 'center', color: '#274046', textDecoration: 'none' }}>
                                     {obj.name}
                                 </CardTitle>
                             </CardBody>

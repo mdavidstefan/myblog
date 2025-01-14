@@ -1,11 +1,6 @@
 import React from 'react'
 import { useContext } from 'react'
 import { CategContext } from '../context/CategContext'
-import { Chip } from '@mui/material'
-import { useState } from 'react'
-import { RadioButtonUnchecked } from '@mui/icons-material'
-import { RadioButtonChecked } from '@mui/icons-material'
-import { middleStyle } from '../utility/utils'
 import { Singlecateg } from './Singlecateg'
 
 export const Categories = ({ selcateg, setSelCateg }) => {
@@ -20,7 +15,7 @@ export const Categories = ({ selcateg, setSelCateg }) => {
     }
 
     return (
-        <div className='categoryselector'>
+        <div className='responsivediv' id='categoryselector'>
             {categories && categories.map((obj) => <Singlecateg selcateg={selcateg} setSelCateg={setSelCateg} name={obj.name} />)}
         </div>
     )
