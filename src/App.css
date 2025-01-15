@@ -121,6 +121,8 @@
 }
 
 #detailedpost {
+  width: auto;
+  height: 600px;
   flex-direction: column;
   padding-bottom: 10px;
   background-color: #ffffff;

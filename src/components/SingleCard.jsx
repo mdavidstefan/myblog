@@ -69,7 +69,7 @@ export const SingleCard = ({ author, category, photo, story, timestamp, title, u
 
     return (
         <div>
-            <Card sx={{ maxWidth: 300, backgroundColor: '#274046', color: '#ffffff' }}>
+            <Card sx={{ maxWidth: 300, backgroundColor: '#274046', color: '#ffffff', height: 'auto' }}>
                 <CardHeader
                     avatar={
                         getcateg() || <DoNotDisturb />
@@ -81,7 +81,7 @@ export const SingleCard = ({ author, category, photo, story, timestamp, title, u
                 />
                 <CardMedia sx={{
                     objectFit: 'cover',
-                    height: 350,
+                    height: 350 ,
                     width: 'auto'
                 }}
                     component="img"
@@ -90,7 +90,7 @@ export const SingleCard = ({ author, category, photo, story, timestamp, title, u
                 />
                 <CardContent>
                     <Typography variant="body2">
-                        {sanitizeUrl(story)}
+                        {sanitizeUrl(story).length > 20 ? sanitizeUrl(story).substring(0, 20) + "..." : sanitizeUrl(story)}
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing >

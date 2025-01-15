@@ -65,6 +65,15 @@ export const UserProvider = ({ children }) => {
         }
     }
 
+    const deleteAccount = async () => {
+        try {
+            await deleteAccount(auth.currentUser)
+            console.log("fiók sikeresen törölve");
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <UserContext.Provider value={{ user, signInUser, signOutUser, msg, setMsg, signUpUser, resetPassword, updateUser }}>
             {children}

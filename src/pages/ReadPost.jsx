@@ -54,16 +54,18 @@ export const ReadPost = () => {
                 <div id="detailedposttop">
                     {post && <>
                         <h2>{post.title}</h2>
-                        <img src={post.photo["url"]} alt={post.title} style={{ 
-                            maxWidth: '100%', height:'auto', objectFit: 'cover'}} />
+                        <img src={post.photo["url"]} alt={post.title} style={{
+                            maxHeight: 300, width: 'auto', objectFit: 'cover'
+                        }} />
                         <p className='detailedposttext'>{parse(post.story)}</p>
                     </>}
                 </div>
                 <div id='detailedpostbottom' style={{ width: '100%' }}>
                     <div>
+                        <Button variant='contained' color="error" onClick={() => navigate("/posts")}>Vissza a posztokhoz</Button>
                         {user && post && (user.uid == post.userId) &&
                             <>
-                                <Button variant='contained' color="error" onClick={() => navigate("/posts")}>Vissza a posztokhoz</Button>
+                                
                                 <IconButton><DeleteSweepSharpIcon onClick={handleDelete} /></IconButton>
                                 <IconButton onClick={() => navigate('/update/' + post.id)}><EditSharpIcon /></IconButton>
                             </>
